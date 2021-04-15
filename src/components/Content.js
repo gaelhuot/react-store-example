@@ -4,27 +4,13 @@ import {useUser} from '../store/modules/user/index';
 const Content = () => {
     const [auth, setAuth] = useState(false);
 
-    const user = useUser();
-
     const login = () => {
-        // TODO
-        user.login({
-            name : 'John doe'
-        });
+    
     };
 
     const logout = () => {
-        // TODO
-        user.logout();
-    };
 
-    useEffect(() => {
-        if ( user.userStore.auth === true ) {
-            setAuth(true);
-        } else {
-            setAuth(false);
-        }
-    }, [user.userStore])
+    };
     
     return (
         <div className="flex justify-center items-center h-20">
