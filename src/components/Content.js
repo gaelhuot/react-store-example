@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {useUser} from '../store/modules/user/index';
+import useUser from '../store/modules/user/hook';
 
 const Content = () => {
     const [auth, setAuth] = useState(false);
@@ -9,7 +9,7 @@ const Content = () => {
     const login = () => {
         // TODO
         user.login({
-            name : 'John doe'
+            id: 'userid'
         });
     };
 
@@ -19,23 +19,23 @@ const Content = () => {
     };
 
     useEffect(() => {
-        if ( user.userStore.auth === true ) {
+        if (user.userStore.auth === true) {
             setAuth(true);
         } else {
             setAuth(false);
         }
     }, [user.userStore])
-    
+
     return (
         <div className="flex justify-center items-center h-20">
             {
                 !auth && (
-                    <button className="bg-green-200 w-20 h-8" onClick={login}>Login</button>        
+                    <button className="bg-green-200 w-20 h-8" onClick={login}>Login</button>
                 )
             }
             {
                 auth && (
-                    <button className="bg-red-200 w-20 h-8" onClick={logout}>Logout</button>        
+                    <button className="bg-red-200 w-20 h-8" onClick={logout}>Logout</button>
                 )
             }
         </div>

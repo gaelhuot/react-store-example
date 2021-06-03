@@ -1,24 +1,13 @@
-import { createStore, applyMiddleware } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { createStore, combineReducers } from "redux";
+import user from "./modules/user/reducer";
 
-import { composeWithDevTools } from "redux-devtools-extension";
 
-import rootReducer from "./rootReducer";
+// J'avais oublié de mettre un objet dans combineReducers, j'avais mis direct (user) 
+// à la place de ({user})
 
-const persistConfig = {
-    key: "root",
-    storage,
-    blacklist: [],
-};
+// Je suis un porc
 
 // Reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
-
-export const store = createStore(
-    persistedReducer,
-    composeEnhancers()
-);
-
-export const persistor = persistStore(store);
+export const store = createStore(combineReducers({
+    user
+}));
